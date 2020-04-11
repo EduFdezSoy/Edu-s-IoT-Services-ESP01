@@ -7,6 +7,7 @@
 
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
+#include <ESP8266HTTPClient.h>
 #include <ServerCalls.h>
 
 const char *ssid = "xxxxxxxxxxx"; // type your ssid
@@ -42,6 +43,31 @@ void powerRelays(int relay, bool status)
       }
     }
   }
+}
+
+void registerDevice(String ip)
+{
+  bool done = false;
+  do
+  {
+    HTTPClient http;
+
+    http.begin("http://pi/iot/register"); // deprecated tus muertos
+    http.addHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    String postData = "device=";
+    postData += HOSTNAME;
+    postData += "&ip=" + ip;
+    postData += "&relayCount=" + RELAYS_LENGHT;
+
+    int res = http.POST(postData);
+    http.end();
+
+    if (res == 200)
+    {
+      done = true;
+    }
+  } while (!done);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////
@@ -217,6 +243,9 @@ void setup()
   }
   Serial.println("");
   Serial.println("WiFi connected");
+
+  // lets register this device in our server
+  registerDevice(WiFi.localIP().toString());
 
   // Start the server
   server.begin();
