@@ -1,5 +1,5 @@
 /*
-  ServerCalls.cpp - Library to send crap to your clients.
+  Edu's IoT Services - ESP8266-01 code, it opens and closes gates
   Created by Eduardo Fernandez (EduFdezSoy), April 10, 2020.
   Released into the public domain.
   version: 1.0
