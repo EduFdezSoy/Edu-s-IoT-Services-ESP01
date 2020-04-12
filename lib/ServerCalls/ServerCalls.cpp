@@ -42,13 +42,20 @@ void ServerCalls::sendStatusHTML(bool statuses[], int lenght)
 {
     responseHTMLHeader();
 
+    _client.println("<p>");
+    _client.println("This device is linked to a server, if you change those values the server will not be noticed.");
+    _client.println("<br>");
+    _client.println("Please, use the Edu's IoT Services App or the server webpage instead.");
+    _client.println("</p>");
+    _client.println("<p>");
+
     for (int i = 0; i < lenght; i++)
     {
-        _client.println("<p>");
-        _client.print("pin ");
+        _client.print("Pin ");
         _client.print(i);
-        _client.print(" set to ");
-        _client.println(printBool(statuses[i]));
+        _client.print(" is set to ");
+        _client.print(printBool(statuses[i]));
+        _client.println(". ");
         _client.print("<a href=\"");
         // if its open, close it!
         if (statuses[i])
@@ -72,10 +79,10 @@ void ServerCalls::sendStatusHTML(bool statuses[], int lenght)
             _client.print("Open");
         }
         _client.println("</a>");
-
-        _client.println("</p>");
+        _client.println("<br>");
     }
 
+    _client.println("</p>");
     _client.println("<br>");
 }
 void ServerCalls::sendBlank()
