@@ -58,7 +58,8 @@ void registerDevice(String ip)
     String postData = "device=";
     postData += HOSTNAME;
     postData += "&ip=" + ip;
-    postData += "&relayCount=" + RELAYS_LENGHT;
+    postData += "&relayCount=";
+    postData += RELAYS_LENGHT;
 
     int res = http.POST(postData);
     http.end();
@@ -66,6 +67,10 @@ void registerDevice(String ip)
     if (res == 200)
     {
       done = true;
+    }
+    else
+    {
+      delay(500);
     }
   } while (!done);
 }
