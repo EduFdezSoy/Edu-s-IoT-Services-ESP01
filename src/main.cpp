@@ -236,7 +236,7 @@ void setup()
   Serial.println();
   Serial.println();
   Serial.print("Connecting to ");
-  Serial.println(ssid);
+  Serial.print(ssid);
 
   WiFi.hostname(HOSTNAME);
   WiFi.begin(ssid, password);
@@ -261,6 +261,7 @@ void setup()
   Serial.print("http://");
   Serial.print(WiFi.localIP());
   Serial.println("/");
+  Serial.println("");
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////
