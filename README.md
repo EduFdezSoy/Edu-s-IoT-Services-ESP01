@@ -1,3 +1,8 @@
+This was fun but I'm now using [ESPHome](https://esphome.io/) or [MicroPython](https://micropython.org/) for nearly all my micros since the first makes integrations with [Home Assistant](https://www.home-assistant.io/) so much easier and the last makes development way faster. I do still use C++ when I need to say tight RAM or high performance needs.
+
+---
+
+
 # Edu's IoT Services
 
 You can find the code under `src` and maybe some custom libraries under `lib` folder
